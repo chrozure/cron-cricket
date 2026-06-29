@@ -1,0 +1,299 @@
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.tutorial {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  max-width: 680px;
+  margin: 0 auto;
+  padding: 0 16px 32px;
+}
+
+.tut-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 16px 0;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 10;
+  animation: fadeUp 0.4s ease both;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #40916c;
+  padding: 4px 0;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.back-btn:hover { color: #1b4332; }
+
+.tut-progress-bar {
+  flex: 1;
+  height: 8px;
+  background: #d8f3dc;
+  border-radius: 4px;
+  overflow: hidden;
+}
+
+.tut-progress-fill {
+  height: 100%;
+  background: #40916c;
+  border-radius: 4px;
+  transition: width 0.3s ease;
+}
+
+.tut-counter {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #52b788;
+  white-space: nowrap;
+}
+
+.tut-card {
+  flex: 1;
+  padding: 28px 0 8px;
+  animation: fadeUp 0.3s ease both;
+}
+
+@media (max-width: 500px) {
+  .tut-card {
+    padding-top: 0;
+  }
+}
+
+.tut-title {
+  font-size: 1.7rem;
+  font-weight: 900;
+  color: #1b4332;
+  margin: 0 0 20px;
+}
+
+.tut-body p {
+  font-size: 1rem;
+  color: #2d3748;
+  line-height: 1.7;
+  margin: 0 0 14px;
+}
+
+.tut-body code {
+  background: #d8f3dc;
+  color: #1b4332;
+  padding: 1px 6px;
+  border-radius: 5px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+}
+
+/* Anatomy diagram */
+.cron-anatomy {
+  background: #1b4332;
+  border-radius: 16px;
+  padding: 20px;
+  margin: 20px 0;
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+}
+
+.anatomy-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  flex: 1;
+}
+
+.anatomy-field {
+  background: #40916c;
+  color: white;
+  font-family: 'Courier New', monospace;
+  font-size: 1.4rem;
+  font-weight: 700;
+  padding: 8px 0;
+  border-radius: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+.anatomy-label {
+  font-size: 0.65rem;
+  font-weight: 800;
+  color: #95d5b2;
+  text-align: center;
+  line-height: 1.2;
+}
+
+.anatomy-range {
+  font-size: 0.6rem;
+  color: #52b788;
+  text-align: center;
+}
+
+/* Example box */
+.tut-example {
+  background: #f0faf4;
+  border: 1.5px solid #b7e4c7;
+  border-radius: 14px;
+  padding: 18px;
+  margin: 20px 0;
+}
+
+.example-expr-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 10px;
+  flex-wrap: wrap;
+}
+
+.expr-field {
+  background: #d8f3dc;
+  color: #1b4332;
+  font-family: 'Courier New', monospace;
+  font-size: 1.15rem;
+  font-weight: 700;
+  padding: 6px 12px;
+  border-radius: 8px;
+}
+
+.expr-field.highlighted {
+  background: #40916c;
+  color: white;
+}
+
+.example-desc {
+  font-size: 0.85rem;
+  color: #2d6a4f;
+  font-weight: 600;
+  margin: 0 0 4px;
+}
+
+/* Table */
+.tut-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin: 16px 0;
+  font-size: 0.9rem;
+}
+
+.tut-table th {
+  background: #1b4332;
+  color: white;
+  padding: 8px 12px;
+  text-align: left;
+  font-weight: 700;
+}
+
+.tut-table td {
+  padding: 8px 12px;
+  border-bottom: 1px solid #d8f3dc;
+  color: #1b4332;
+}
+
+.tut-table tr:nth-child(even) td { background: #f0faf4; }
+
+.tut-table td code {
+  background: #d8f3dc;
+  color: #1b4332;
+  padding: 1px 6px;
+  border-radius: 4px;
+  font-family: 'Courier New', monospace;
+}
+
+.tut-final-cricket {
+  display: flex;
+  justify-content: center;
+  margin: 8px 0 4px;
+}
+
+/* Summary grid */
+.tut-summary { margin: 20px 0; }
+
+.syntax-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.syntax-item {
+  background: #f0faf4;
+  border: 1.5px solid #b7e4c7;
+  border-radius: 10px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.syntax-item code {
+  font-family: 'Courier New', monospace;
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #1b4332;
+  background: #d8f3dc;
+  padding: 2px 8px;
+  border-radius: 5px;
+  align-self: flex-start;
+}
+
+.syntax-item span {
+  font-size: 0.78rem;
+  color: #2d6a4f;
+  font-weight: 600;
+}
+
+/* Nav buttons */
+.tut-nav {
+  display: flex;
+  gap: 12px;
+  padding-top: 16px;
+  animation: fadeUp 0.4s ease 0.2s both;
+}
+
+.tut-btn {
+  flex: 1;
+  padding: 14px;
+  border-radius: 12px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.1s, box-shadow 0.1s;
+}
+
+.tut-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.tut-btn:disabled {
+  opacity: 0.35;
+  cursor: default;
+}
+
+.tut-btn.primary {
+  background: #40916c;
+  color: white;
+}
+
+.tut-btn.secondary {
+  background: #d8f3dc;
+  color: #1b4332;
+}

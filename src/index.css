@@ -1,0 +1,45 @@
+:root {
+  --bg: #f6fdf8;
+  font-family: 'Nunito', 'Segoe UI', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  color: #1b4332;
+  background-color: var(--bg);
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.back-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 700;
+  color: #40916c;
+  padding: 4px 0;
+  white-space: nowrap;
+  font-family: inherit;
+}
+
+.back-btn:hover { color: #1b4332; }
+
+a {
+  color: #40916c;
+  text-decoration: none;
+}
+
+button {
+  font-family: inherit;
+}

@@ -1,0 +1,144 @@
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.levels-page {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 0 16px 48px;
+}
+
+.levels-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 20px 0 12px;
+  position: sticky;
+  top: 0;
+  background: var(--bg);
+  z-index: 10;
+  animation: fadeUp 0.4s ease both;
+}
+
+.levels-title {
+  font-size: 1.5rem;
+  font-weight: 900;
+  color: #1b4332;
+  margin: 0;
+}
+
+.chapters {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.chapter {
+  background: white;
+  border-radius: 18px;
+  padding: 20px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+}
+
+.chapter-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.chapter-emoji {
+  font-size: 2rem;
+  flex-shrink: 0;
+}
+
+.chapter-title {
+  font-size: 1.1rem;
+  font-weight: 800;
+  color: #1b4332;
+  margin: 0 0 3px;
+}
+
+.chapter-desc {
+  font-size: 0.82rem;
+  color: #52b788;
+  font-weight: 600;
+  margin: 0;
+}
+
+.level-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+
+@media (max-width: 480px) {
+  .level-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+.level-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 10px 6px;
+  border-radius: 10px;
+  border: 2px solid #d8f3dc;
+  background: #f0faf4;
+  cursor: pointer;
+  transition: transform 0.1s, box-shadow 0.1s, border-color 0.1s;
+  font-family: inherit;
+  animation: fadeUp 0.35s ease both;
+  animation-delay: calc(var(--i, 0) * 0.02s);
+}
+
+.level-btn:hover:not(:disabled) {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  border-color: #52b788;
+}
+
+.level-btn.done {
+  background: #d8f3dc;
+  border-color: #40916c;
+}
+
+.level-btn.locked {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.level-num {
+  font-size: 0.7rem;
+  font-weight: 800;
+  color: #74c69d;
+  letter-spacing: 0.05em;
+}
+
+.level-icon {
+  font-size: 1.1rem;
+  line-height: 1;
+}
+
+.level-btn.done .level-icon {
+  color: #40916c;
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
+.level-name {
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: #1b4332;
+  text-align: center;
+  line-height: 1.3;
+}

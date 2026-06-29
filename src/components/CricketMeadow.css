@@ -1,0 +1,17 @@
+.cricket-meadow {
+  margin: 24px 0 4px;
+  border-radius: 14px;
+  overflow: hidden;
+
+}
+
+.meadow-hop {
+  animation: meadow-hop 14s ease-in-out infinite;
+}
+
+@keyframes meadow-hop {
+  0%    { transform: translateY(0); }
+  2.5%  { transform: translateY(-28px); }
+  5%    { transform: translateY(0); }
+  100%  { transform: translateY(0); }
+}

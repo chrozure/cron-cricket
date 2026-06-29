@@ -1,0 +1,33 @@
+.cricket-wrapper {
+  display: inline-block;
+  transition: transform 0.1s;
+}
+
+.cricket-wrapper.jumping {
+  animation: bounce 0.48s ease-in-out 2;
+}
+
+.cricket-wrapper.done {
+  animation: glow-pulse 1.8s ease-in-out infinite;
+}
+
+.notes-float {
+  animation: notes-bob 2s ease-in-out infinite;
+  transform-box: fill-box;
+  transform-origin: center bottom;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-6px); }
+}
+
+@keyframes glow-pulse {
+  0%, 100% { filter: drop-shadow(0 0 4px rgba(82, 183, 136, 0.4)); }
+  50%       { filter: drop-shadow(0 0 12px rgba(82, 183, 136, 0.85)); }
+}
+
+@keyframes notes-bob {
+  0%, 100% { transform: translateY(0); }
+  50%       { transform: translateY(-5px); }
+}
