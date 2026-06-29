@@ -6,11 +6,12 @@ Cron Cricket is an interactive web app for learning cron expression syntax — i
 
 ## Features
 
-- **What is cron?** — A 13-slide read-and-learn tutorial covering the full 5-field cron syntax: wildcards, specific values, ranges, lists, step values, named days/months, and special strings.
-- **Play Levels** — 30 guided levels across 5 chapters. Early levels use individual field inputs; later levels require the full expression. Chapters 4–5 introduce 6-field (seconds) and 7-field (year) expressions. Progress is saved in `localStorage`.
-- **Free Practice** — Infinite random questions mixing typed expressions and multiple-choice. 5-field only.
+- **What is cron?** — A 14-slide read-and-learn tutorial covering the full 5-field cron syntax: wildcards, specific values, ranges, lists, step values, named days/months, special strings, and extended 6/7-field variants.
+- **Play Levels** — 30 guided levels across 5 chapters. Early levels use individual field inputs with some fields locked; later levels require the full expression. Chapters 4–5 introduce 6-field (seconds) and 7-field (year) expressions. Progress is saved in `localStorage`.
+- **Free Practice** — Infinite random questions with three types: type the expression yourself, single-answer multiple choice, and multi-select (pick all correct answers). Tracks a running score. 5-field only.
 - **Live next-run preview** — As you type, the app shows the next 6 scheduled run times for your expression.
 - **Chirping cricket** — The SVG cricket character animates and chirps when you get an answer right.
+- **Animated meadow** — A responsive cricket meadow banner with multiple hopping crickets greets you on the tutorial's opening slide.
 
 ## Tech stack
 
@@ -41,19 +42,32 @@ Or connect the repo to Vercel — it will auto-detect Vite and deploy on push.
 ```
 src/
   components/
-    Cricket.jsx       # SVG cricket character with chirp animation
-    NextRunTimes.jsx  # Shows next scheduled runs for an expression
+    Cricket.jsx        # SVG cricket character with jump and chirp animation
+    CricketMeadow.jsx  # Animated meadow banner with multiple hopping crickets
+    NextRunTimes.jsx   # Shows next scheduled runs for an expression
   pages/
-    Home.jsx          # Landing page with 3 mode buttons
-    Tutorial.jsx      # Read-and-learn slideshow
-    Levels.jsx        # Level selection grouped by chapter
-    LevelPlay.jsx     # Individual level gameplay
-    Practice.jsx      # Free practice mode
+    Home.jsx           # Landing page with 3 mode buttons
+    Tutorial.jsx       # Read-and-learn slideshow (14 slides)
+    Levels.jsx         # Level selection grouped by chapter
+    LevelPlay.jsx      # Individual level gameplay
+    Practice.jsx       # Free practice mode (write / MC / multi-select)
   data/
     tutorialContent.js   # Tutorial slide content
-    levelData.js         # Level definitions and answers
-    practiceQuestions.js # Free practice question pool
+    levelData.js         # Level definitions and answers (5 chapters, 30 levels)
+    practiceQuestions.js # Free practice question pool (50+ questions)
   utils/
     cronValidator.js  # Expression validation and equivalence checking
     storage.js        # localStorage progress helpers
 ```
+
+## Levels overview
+
+| Chapter | Theme | Levels |
+|---------|-------|--------|
+| 🌱 The Basics | Wildcards and specific values | 1–6 |
+| ⏰ Time Patterns | Step values and repeating schedules | 7–12 |
+| 📋 Ranges & Lists | Ranges, comma lists, and day names | 13–18 |
+| 📅 Calendars | Named months, weekday combinations | 19–24 |
+| 🚀 Advanced | 6-field (seconds) and 7-field (year) | 25–30 |
+
+Levels unlock in order; complete one to unlock the next.
