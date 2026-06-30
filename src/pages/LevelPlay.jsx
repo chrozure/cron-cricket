@@ -11,6 +11,13 @@ const FIELD_LABELS_5 = ['Minute', 'Hour', 'Day of Month', 'Month', 'Day of Week'
 const FIELD_LABELS_6 = ['Second', 'Minute', 'Hour', 'Day of Month', 'Month', 'Day of Week']
 const FIELD_LABELS_7 = ['Second', 'Minute', 'Hour', 'Day of Month', 'Month', 'Day of Week', 'Year']
 
+function renderHint(hint) {
+  const parts = hint.split('`')
+  return parts.map((part, i) =>
+    i % 2 === 1 ? <code key={i}>{part}</code> : part
+  )
+}
+
 function getFieldLabels(count) {
   if (count === 6) return FIELD_LABELS_6
   if (count === 7) return FIELD_LABELS_7
@@ -43,6 +50,7 @@ export default function LevelPlay() {
   const [showHint, setShowHint] = useState(false)
   const [attempts, setAttempts] = useState(0)
   const inputRef = useRef(null)
+  const firstFieldRef = useRef(null)
 
   useEffect(() => {
     if (!level) return
@@ -55,6 +63,15 @@ export default function LevelPlay() {
     setStatus('idle')
     setShowHint(false)
     setAttempts(0)
+  }, [id])
+
+  useEffect(() => {
+    if (!level) return
+    const raf = requestAnimationFrame(() => {
+      if (level.inputMode === 'fields') firstFieldRef.current?.focus()
+      else inputRef.current?.focus()
+    })
+    return () => cancelAnimationFrame(raf)
   }, [id])
 
   useEffect(() => {
@@ -97,6 +114,7 @@ export default function LevelPlay() {
     }
     if (expressionsEquivalent(expr, level.answer)) {
       setStatus('correct')
+      setShowHint(false)
       markLevelComplete(level.id)
     } else {
       setStatus('wrong')
@@ -157,6 +175,7 @@ export default function LevelPlay() {
                     <div key={i} className={`field-col${!isActive && !isLocked ? ' inactive' : ''}`} style={{ '--i': i }}>
                       <label className="field-label">{label}</label>
                       <input
+                        ref={i === activeFieldIndices[0] ? firstFieldRef : null}
                         className={`field-input${isLocked ? ' locked' : ''}`}
                         value={fields[i]}
                         onChange={e => isActive && setField(i, e.target.value)}
@@ -198,31 +217,30 @@ export default function LevelPlay() {
             </div>
           )}
 
-          <div className="action-row">
-            <button
-              className="hint-btn"
-              onClick={() => setShowHint(s => !s)}
-            >
-              {showHint ? 'Hide hint' : '💡 Hint'}
-            </button>
-            <button
-              className="submit-btn"
-              onClick={handleSubmit}
-              disabled={status === 'correct'}
-            >
-              Check answer
-            </button>
-          </div>
-
-          {previewExpr && <div className="next-run-mobile-slot"><NextRunTimes expr={previewExpr} /></div>}
+          {status !== 'correct' && (
+            <div className="action-row">
+              <button
+                className="hint-btn"
+                onClick={() => setShowHint(s => !s)}
+              >
+                {showHint ? 'Hide hint' : '💡 Hint'}
+              </button>
+              <button
+                className="submit-btn"
+                onClick={handleSubmit}
+              >
+                Check answer
+              </button>
+            </div>
+          )}
 
           {showHint && (
-            <div className="hint-box">{level.hint}</div>
+            <div className="hint-box">{renderHint(level.hint)}</div>
           )}
 
           {status === 'correct' && (
             <div className="feedback correct">
-              <strong>Correct!</strong> Well done — your cricket is chirping!
+              <strong>Correct!</strong> {nextLevel ? 'Well done — your cricket is chirping!' : 'Well done - you have finished all of the challenges!'}
             </div>
           )}
           {status === 'wrong' && (
@@ -246,6 +264,12 @@ export default function LevelPlay() {
               )}
             </div>
           )}
+
+          {previewExpr && (
+            <div className={`next-run-mobile-slot${status === 'correct' ? ' show-on-correct' : ''}`}>
+              <NextRunTimes expr={previewExpr} />
+            </div>
+          )}
         </div>
 
         <div className="play-right">
@@ -253,7 +277,7 @@ export default function LevelPlay() {
             <Cricket size={140} chirping={status === 'correct'} />
             {status === 'correct' && <p className="chirp-label">Chirp chirp! 🎵</p>}
           </div>
-          {previewExpr && <NextRunTimes expr={previewExpr} />}
+          {previewExpr && status !== 'correct' && <NextRunTimes expr={previewExpr} />}
         </div>
       </div>
     </div>

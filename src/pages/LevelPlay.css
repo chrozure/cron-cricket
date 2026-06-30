@@ -294,6 +294,15 @@
   line-height: 1.6;
 }
 
+.hint-box code {
+  font-family: 'Courier New', Courier, monospace;
+  background: #fdecc8;
+  padding: 1px 5px;
+  border-radius: 4px;
+  font-size: 0.88em;
+  color: #5a3000;
+}
+
 .feedback {
   padding: 14px 16px;
   border-radius: 10px;
@@ -375,6 +384,10 @@
 
 .next-run-mobile-slot {
   display: none;
+}
+
+.next-run-mobile-slot.show-on-correct {
+  display: block;
 }
 
 /* Responsive */

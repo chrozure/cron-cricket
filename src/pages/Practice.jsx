@@ -1,4 +1,4 @@
-import { useState, useCallback, useEffect } from 'react'
+import { useState, useCallback, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { getRandomQuestion } from '../data/practiceQuestions'
 import { expressionsEquivalent, isValidCron } from '../utils/cronValidator'
@@ -17,6 +17,7 @@ export default function Practice() {
   const [shuffledOptions, setShuffledOptions] = useState(() =>
     (question.type === 'mc' || question.type === 'multi') ? shuffle([...question.options]) : []
   )
+  const inputRef = useRef(null)
 
   function shuffle(arr) {
     for (let i = arr.length - 1; i > 0; i--) {
@@ -47,6 +48,10 @@ export default function Practice() {
     window.addEventListener('keydown', handler)
     return () => window.removeEventListener('keydown', handler)
   }, [status, question.type, selected, multiSelected])
+
+  useEffect(() => {
+    if (question.type === 'write') inputRef.current?.focus()
+  }, [qIdx])
 
   useEffect(() => {
     if (status !== 'correct') return
@@ -147,6 +152,7 @@ export default function Practice() {
           {question.type === 'write' ? (
             <div className="write-section" key={`input-${qIdx}`}>
               <input
+                ref={inputRef}
                 className="write-input"
                 value={writeVal}
                 onChange={e => { setWriteVal(e.target.value); setStatus('idle') }}

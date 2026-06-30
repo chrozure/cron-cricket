@@ -182,7 +182,7 @@ export const practicePool = [
   },
   {
     type: 'multi',
-    prompt: 'Which of the following expressions only run on weekdays (Monday–Friday)?',
+    prompt: 'Which of the following expressions only run on weekdays?',
     answers: ['0 9 * * 1-5', '45 15 * * 1-5'],
     options: ['0 9 * * 1-5', '45 15 * * 1-5', '0 9 * * *', '0 9 * * 0,6'],
   },

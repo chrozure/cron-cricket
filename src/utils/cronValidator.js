@@ -45,24 +45,66 @@ export function isValidCron(expr) {
   }
 }
 
+function parseYearField(yearField) {
+  if (yearField === '*') return null
+  const years = new Set()
+  for (const part of yearField.split(',')) {
+    if (part.includes('/')) {
+      const [base, step] = part.split('/')
+      const start = base === '*' ? 1970 : parseInt(base)
+      for (let y = start; y <= 2099; y += parseInt(step)) years.add(y)
+    } else if (part.includes('-')) {
+      const [start, end] = part.split('-').map(Number)
+      for (let y = start; y <= end; y++) years.add(y)
+    } else {
+      years.add(parseInt(part))
+    }
+  }
+  return years
+}
+
 export function getNextRuns(expr, count = 8) {
   try {
     const parts = expr.trim().split(/\s+/)
     const opts = { iterator: true }
     let parseExpr = expr
+    let validYears = null
+    let maxYear = Infinity
+
     if (parts.length === 7) {
       parseExpr = parts.slice(0, 6).join(' ')
       opts.hasSeconds = true
+      validYears = parseYearField(parts[6])
+
+      if (validYears !== null) {
+        const now = new Date()
+        const futureYears = [...validYears].filter(y => y >= now.getFullYear())
+        if (futureYears.length === 0) return []
+        const minFutureYear = Math.min(...futureYears)
+        maxYear = Math.max(...futureYears)
+        if (minFutureYear > now.getFullYear()) {
+          opts.currentDate = new Date(minFutureYear - 1, 11, 31, 23, 59, 59)
+        }
+      }
     } else if (parts.length === 6) {
       opts.hasSeconds = true
     }
+
     const interval = CronParser.parseExpression(parseExpr, opts)
     const results = []
-    for (let i = 0; i < count; i++) {
+    const maxIter = validYears ? count * 1000 : count
+
+    for (let i = 0; i < maxIter && results.length < count; i++) {
       const { value, done } = interval.next()
       if (done) break
-      results.push(value.toDate())
+      const date = value.toDate()
+      if (validYears !== null) {
+        if (date.getFullYear() > maxYear) break
+        if (!validYears.has(date.getFullYear())) continue
+      }
+      results.push(date)
     }
+
     return results
   } catch {
     return []
@@ -130,6 +172,12 @@ function runsMatch(a, b, count = 20) {
 export function expressionsEquivalent(userExpr, correctExpr) {
   if (!isValidCron(userExpr)) return false
   if (normalizeExpr(userExpr) === normalizeExpr(correctExpr)) return true
+  const userParts = userExpr.trim().split(/\s+/)
+  const correctParts = correctExpr.trim().split(/\s+/)
+  if (userParts.length === 7 && correctParts.length === 7 &&
+      normalizePart(userParts[6], null) !== normalizePart(correctParts[6], null)) {
+    return false
+  }
   return runsMatch(userExpr, correctExpr)
 }
 
