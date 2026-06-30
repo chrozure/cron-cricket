@@ -163,6 +163,8 @@
   cursor: pointer;
   font-family: inherit;
   text-align: left;
+  width: 100%;
+  min-width: 0;
   transition: border-color 0.12s, transform 0.08s;
   animation: fadeUp 0.3s ease both;
   animation-delay: calc(0.08s + var(--i, 0) * 0.05s);
