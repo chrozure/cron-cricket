@@ -85,6 +85,12 @@
   }
 }
 
+@media (min-width: 1200px) {
+  .levels-page {
+    max-width: 920px;
+  }
+}
+
 .level-btn {
   display: flex;
   flex-direction: column;

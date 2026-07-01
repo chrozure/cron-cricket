@@ -309,6 +309,16 @@
   display: none;
 }
 
+@media (min-width: 1200px) {
+  .practice-page {
+    max-width: 1080px;
+  }
+
+  .practice-right {
+    width: 280px;
+  }
+}
+
 @media (max-width: 640px) {
   .practice-content {
     flex-direction: column;

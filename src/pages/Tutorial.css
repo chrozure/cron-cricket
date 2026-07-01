@@ -78,6 +78,12 @@
   }
 }
 
+@media (min-width: 1200px) {
+  .tutorial {
+    max-width: 820px;
+  }
+}
+
 .tut-title {
   font-size: 1.7rem;
   font-weight: 900;

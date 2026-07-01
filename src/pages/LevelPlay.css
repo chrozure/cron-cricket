@@ -390,6 +390,16 @@
   display: block;
 }
 
+@media (min-width: 1200px) {
+  .level-play {
+    max-width: 1140px;
+  }
+
+  .play-right {
+    width: 300px;
+  }
+}
+
 /* Responsive */
 @media (max-width: 640px) {
   .play-content {
