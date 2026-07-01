@@ -7,7 +7,6 @@ import Cricket from '../components/Cricket'
 import './Tutorial.css'
 
 const FIELD_LABELS = ['Minute', 'Hour', 'Day of Month', 'Month', 'Day of Week']
-const FIELD_RANGES = ['0–59', '0–23', '1–31', '1–12', '0–6 (Sun=0)']
 
 function renderInline(text) {
   return text.split(/(`[^`]+`|\*\*[^*]+\*\*)/).map((p, i) => {

@@ -17,7 +17,7 @@ Cron is used everywhere — from sending nightly email reports, to clearing cach
 Each field represents a unit of time. Together they pinpoint exactly when the job fires.`,
     example: '* * * * *',
     fieldLabels: ['Minute', 'Hour', 'Day of Month', 'Month', 'Day of Week'],
-    fieldRanges: ['0–59', '0–23', '1–31', '1–12', '0–6 (Sun=0)'],
+    fieldRanges: ['0-59', '0-23', '1-31', '1-12', '0-6 (Sun=0)'],
   },
   {
     id: 'wildcard',
@@ -132,7 +132,7 @@ This OR behaviour can be surprising! If you only want "the 13th that falls on a 
     title: 'Putting it all together',
     content: `You can mix wildcards, specific values, ranges, lists, and steps across all five fields.
 
-\`*/5 9-17 * * 1-5\` — every 5 minutes, during 9am–5pm, Monday to Friday.
+\`*/5 9-17 * * 1-5\` — every 5 minutes, during 9am-5pm, Monday to Friday.
 
 \`0 0 1,15 * *\` — at midnight on the 1st and 15th of every month.
 
@@ -169,8 +169,8 @@ These aren't part of the core cron syntax, but you'll see them often in the wild
 | Format | Expression shape | Extra fields | Common platforms |
 |--------|-----------------|--------------|-----------------|
 | 5-field | \`MIN HR DOM MON DOW\` | — | Unix cron, GitHub Actions |
-| 6-field | \`SEC MIN HR DOM MON DOW\` | Seconds (0–59) | Spring, AWS EventBridge |
-| 7-field | \`SEC MIN HR DOM MON DOW YEAR\` | Seconds + Year (1970–2099) | Quartz Scheduler |
+| 6-field | \`SEC MIN HR DOM MON DOW\` | Seconds (0-59) | Spring, AWS EventBridge |
+| 7-field | \`SEC MIN HR DOM MON DOW YEAR\` | Seconds + Year (1970-2099) | Quartz Scheduler |
 
 For example, the 6-field expression \`0 30 14 * * *\` means "at exactly 14:30:00 every day" — the leading \`0\` pins the seconds to zero.
 

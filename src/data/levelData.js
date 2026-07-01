@@ -335,7 +335,7 @@ export const chapters = [
       {
         id: 30,
         title: 'The grand finale',
-        story: 'This cricket chirps every 15 minutes during business hours (9am–5pm), on weekdays, in the months of March through September, in the years 2030 and 2031. Use the 7-field format.',
+        story: 'This cricket chirps every 15 minutes during business hours (9am-5pm), on weekdays, in the months of March through September, in the years 2030 and 2031. Use the 7-field format.',
         inputMode: 'full',
         answer: '0 */15 9-17 * 3-9 1-5 2030,2031',
         hint: 'Format: second minute hour dom month dow year. Second=`0`, minute=`*/15`, hour=`9-17`, dom=`*`, month=`3-9`, dow=`1-5`, year=`2030,2031`.',
